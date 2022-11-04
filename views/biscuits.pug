@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+  -
+     let biscuits = [
+        {"Brandname":"oreo","Price":3.2 , "Flavour":"chocolate"},
+        {"Brandname":"parlez","Price":4,"Flavour":"Strawberry"},
+        {"Brandname":"Kit","Price":6,"Flavour":"vanilla"}
+        ] 
+
+  .container-fluid 
+    .row 
+      each bis in biscuits
+        div(class="col-sm-2" onclick=`buy(${biscuits.indexOf(bis)})`) 
+          each value,key in bis 
+            = " " +value
+  script.
+    function buy(index){
+      alert("You purchased item "+index)
+    }

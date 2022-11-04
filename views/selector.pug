@@ -1,0 +1,13 @@
+extends layout 
+
+block content 
+    h1= title 
+    p Geethika's #{title}
+    - var images = ["parle.jfif","oreo.jfif","kitkat.jfif"];
+    - var i =0;
+    - while(i<3){
+     - var index = Math.floor(Math.random()*3)
+     - img = "/images/"+images[index]
+     - i++
+     img(src=img,  height="300px",width="300px",alt="alt")     
+    -}
