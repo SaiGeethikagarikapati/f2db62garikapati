@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('Biscuits', { title: 'Biscuits Search Results' });
-});
-
-module.exports = router;
+var express = require('express'); 
+const biscuit_controlers= require('../controllers/biscuit'); 
+var router = express.Router(); 
+ 
+/* GET costumes */ 
+router.get('/', biscuit_controlers.biscuit_view_all_Page ); 
+module.exports = router; 
