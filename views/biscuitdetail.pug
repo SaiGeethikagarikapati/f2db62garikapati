@@ -1,0 +1,24 @@
+extends layout 
+ 
+block content 
+  h1= title 
+  if (toShow == null) 
+    h2 No instance to show
+  else 
+  - let id = toShow._id 
+  - let brandName = toShow.brandName 
+  - let price = toShow.price 
+  - let flavour = toShow.flavour 
+  div 
+    div.row 
+      div(class='costumeAttr mr-3') Biscuit ID is: 
+      div #{id} 
+    div.row 
+      div(class='costumeAttr mr-3') Biscuit Type is: 
+      div #{brandName} 
+    div.row 
+      div(class='costumeAttr mr-3') Biscuit Size is: 
+      div #{flavour} 
+    div.row 
+      div(class='costumeAttr mr-3') Biscuit Cost is: 
+      div #{price} 

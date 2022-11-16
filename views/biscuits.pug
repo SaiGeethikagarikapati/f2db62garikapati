@@ -7,7 +7,7 @@ block content
   .container-fluid 
     .row 
       each bis,key in results
-        div(class="col-sm-2" onclick=`buy(${key})`) 
+        div(class="col-sm-2 biscuitbox" onclick=`buy(${key})`) 
           = " " +bis.brandName+" "+bis.price+" "+bis.flavour
   script.
     function buy(index){
