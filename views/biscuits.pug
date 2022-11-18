@@ -7,9 +7,11 @@ block content
   .container-fluid 
     .row 
       each bis,key in results
-        div(class="col-sm-2 biscuitbox" onclick=`buy(${key})`) 
+        div(class="col-sm-2 biscuitbox" onclick=`buy(${key})`)
+        - let destination = `dispatch(\"/biscuits/update?id=${bis._id}\")` 
           = " " +bis.brandName+" "+bis.price+" "+bis.flavour
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
   script.
-    function buy(index){
-      alert("You purchased item "+index)
+    function dispatch(path){
+      window.location.href=path
     }
