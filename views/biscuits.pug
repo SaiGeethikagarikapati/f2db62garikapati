@@ -5,12 +5,15 @@ block content
 
 
   .container-fluid 
+    button.btn( class="btn-primary ml-1", onclick= `dispatch(\"/biscuits/create")` ) Go to create page
     .row 
       each bis,key in results
         div(class="col-sm-2 biscuitbox" onclick=`buy(${key})`)
         - let destination = `dispatch(\"/biscuits/update?id=${bis._id}\")` 
           = " " +bis.brandName+" "+bis.price+" "+bis.flavour
           button.btn( class="btn-primary ml-1", onclick= destination) Update
+          button.btn( class="btn-info ml-1", onclick= `dispatch(\"/biscuits/detail?id=${bis._id}\")` ) Details
+          button.btn( class="btn-danger ml-1", onclick= `dispatch(\"/biscuits/delete?id=${bis._id}\")` ) Delete
   script.
     function dispatch(path){
       window.location.href=path

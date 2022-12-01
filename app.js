@@ -5,7 +5,21 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport'); 
 var LocalStrategy = require('passport-local').Strategy; 
- 
+var Account = require("./models/Account")
+passport.use(new LocalStrategy( 
+  function(username, password, done) { 
+    Account.findOne({ username: username }, function (err, user) { 
+      if (err) { return done(err); } 
+      if (!user) { 
+        return done(null, false, { message: 'Incorrect username.' }); 
+      } 
+      if (!user.validPassword(password)) { 
+        return done(null, false, { message: 'Incorrect password.' }); 
+      } 
+      return done(null, user); 
+    }); 
+  } ))
+
 require('dotenv').config(); 
 const connectionString =  
 process.env.MONGO_CON 
@@ -103,17 +117,4 @@ Biscuit({brandName:"Treat",  price:30, flavour:"jelly"});
  
 let reseed = true; 
 if (reseed) { recreateDB();} 
-passport.use(new LocalStrategy( 
-  function(username, password, done) { 
-    Account.findOne({ username: username }, function (err, user) { 
-      if (err) { return done(err); } 
-      if (!user) { 
-        return done(null, false, { message: 'Incorrect username.' }); 
-      } 
-      if (!user.validPassword(password)) { 
-        return done(null, false, { message: 'Incorrect password.' }); 
-      } 
-      return done(null, user); 
-    }); 
-  } ))
 module.exports = app;
